@@ -371,7 +371,7 @@ def frag_length_bins(
             
     # bin_start = min(frag_len_dict.keys())
     # bin_stop = max(frag_len_dict.keys())
-    ## former is original, latter is modified to get start and stop form params revised by Jilie Liu
+    ## former is original, latter is modified to get start and stop form params revised by Liu
     bin_start = min_length
     bin_stop = max_length
     n_bins = (bin_stop - bin_start) // bin_size
