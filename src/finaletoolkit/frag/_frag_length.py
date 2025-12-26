@@ -369,8 +369,11 @@ def frag_length_bins(
             (f'short fraction (s{short_fraction})',
              short_coverage/total_count))
             
-    bin_start = min(frag_len_dict.keys())
-    bin_stop = max(frag_len_dict.keys())
+    # bin_start = min(frag_len_dict.keys())
+    # bin_stop = max(frag_len_dict.keys())
+    ## former is original, latter is modified to get start and stop form params
+    bin_start = min_length
+    bin_stop = max_length
     n_bins = (bin_stop - bin_start) // bin_size
     bins = np.arange(bin_start, bin_stop+bin_size, bin_size)
 
