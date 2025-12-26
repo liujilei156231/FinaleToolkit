@@ -374,15 +374,15 @@ def frag_length_bins(
     ## former is original, latter is modified to get start and stop form params revised by Liu
     bin_start = min_length
     bin_stop = max_length
-    n_bins = (bin_stop - bin_start) // bin_size
-    bins = np.arange(bin_start, bin_stop+bin_size, bin_size-1)
+    bins = np.arange(bin_start, bin_stop, bin_size)
+    n_bins = len(bins)
 
     counts = []
 
     # generate histogram data
-    for i in trange(n_bins+1, disable=not verbose, desc="Binning fragments:"):
-        bin_lower = bin_start + i * bin_size
-        bin_upper = bin_start + (i + 1) * bin_size
+    for i in trange(n_bins, disable=not verbose, desc="Binning fragments:"):
+        bin_lower = bins[i]
+        bin_upper = bin_lower + bin_size
         bin_count = sum(count for length, count in frag_len_dict.items()
                         if bin_lower <= length < bin_upper)
         if bin_count is None:
@@ -404,7 +404,7 @@ def frag_length_bins(
 
             out.write('min\tmax\tcount\n')
             for bin, count in zip(bins, counts):
-                out.write(f'{bin}\t{bin+bin_size-1}\t{count}\n')
+                out.write(f'{bin}\t{bin+bin_size}\t{count}\n')
 
             if summary_stats:
                 for name, value in stats:
