@@ -375,7 +375,7 @@ def frag_length_bins(
     bin_start = min_length
     bin_stop = max_length
     n_bins = (bin_stop - bin_start) // bin_size
-    bins = np.arange(bin_start, bin_stop+bin_size, bin_size)
+    bins = np.arange(bin_start, bin_stop+bin_size, bin_size-1)
 
     counts = []
 
